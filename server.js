@@ -98,6 +98,16 @@ app.get('/api/getproducts/price/:id',(req, res) => {
   });
 });
 
+//GET ALL PRODUCT by PRODUCT_ID ... To retrieve all all products call this API ... URL/api/getproducts/'Product_id'
+app.get('/api/getproductids',(req, res) => {
+let sql = "SELECT ITEM_NUMBER FROM XXIBM_PRODUCT_SKU";  
+console.log(sql);
+  let query = mysqlClient.query(sql, (err, results) => {
+    if(err) throw err;
+    res.send(JSON.stringify({"status": 200, "error": null, "response": results}));
+  });
+});
+
 // set port
 app.listen(port, ip);
 
